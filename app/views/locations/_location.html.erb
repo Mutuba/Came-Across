@@ -1,0 +1,34 @@
+<div id="<%= dom_id(location) %>">
+  <p>
+    <strong>Name:</strong>
+    <%= location.name %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= location.address %>
+  </p>
+
+  <p>
+    <strong>Latitude:</strong>
+    <%= location.latitude %>
+  </p>
+
+  <p>
+    <strong>Longitude:</strong>
+    <%= location.longitude %>
+  </p>
+
+  <% marker_data = [{
+    latitude: location.latitude,
+    longitude: location.longitude,
+    tooltip: location.address,
+    label: location.name
+  }]
+  %>
+
+  <!-- Display the map using the js_map helper with specific marker data -->
+  <%= js_map marker_data,
+             style: "mapbox://styles/mapbox/outdoors-v12",
+             tooltips: { html: true } %>
+</div>

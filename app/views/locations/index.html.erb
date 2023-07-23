@@ -1,0 +1,21 @@
+<div class="container d-flex align-items-center justify-content-center">
+  <div>
+    <p style="color: green"><%= notice %></p>
+    <h1>My Places</h1>
+
+    <div id="locations">
+      <% @locations.each do |location| %>
+        <%= render location %>
+        <p><br>
+          <button class="btn btn-primary" type="button">
+            <%= link_to "Show this location", location_path(location), class: "btn btn-primary" %>
+          </button>
+        </p>
+      <% end %>
+    </div>
+
+    <button class="btn btn-primary" type="button">
+      <%= link_to "Add New Place", new_location_path, class: "btn btn-primary" %>
+    </button>
+  </div>
+</div>
