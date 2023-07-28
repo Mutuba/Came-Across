@@ -6,16 +6,21 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= action_cable_meta_tag %>
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
+  <%= javascript_include_tag 'rating_validation' %>
+  <%= javascript_include_tag 'image_uploads' %>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+  <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 </head>
 
 <body>
   <header>
     <%= render 'layouts/navbar' %>
+    <br/>
     <%= render 'layouts/alerts' %>
   </header>
   <main>

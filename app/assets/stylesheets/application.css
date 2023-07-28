@@ -13,3 +13,34 @@
  *= require_tree .
  *= require_self
  */
+.custom-date-field {
+  background-color: #f2f2f2;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.stars {
+  color: orange;
+}
+
+.star {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+
+.star.filled:before {
+  content: "\2605"; /* Unicode character for a solid star (★) */
+}
+
+.star.empty:before {
+  content: "\2606"; /* Unicode character for an empty star (☆) */
+}
+
+@media (min-width: 768px) {
+  .container-md {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

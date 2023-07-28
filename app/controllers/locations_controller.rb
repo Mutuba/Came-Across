@@ -1,43 +1,45 @@
+# frozen_string_literal: true
+
 class LocationsController < ApplicationController
-  before_action :set_location, only: %i[ show edit update destroy ]
+  before_action :set_location, only: %i[show edit update destroy]
 
   def index
-    @locations = Location.all
-  
+    @locations = Location.all.order(updated_at: :desc)
+
     respond_to do |format|
-      format.html 
-      format.json { render json: @locations } 
+      format.html
+      format.json { render json: @locations }
     end
   end
-  
 
   # GET /locations/1 or /locations/1.json
   def show
     respond_to do |format|
-      format.html 
-      format.json { render json: @location } 
+      format.html
+      format.json { render json: @location }
     end
   end
 
   # GET /locations/new
   def new
     @location = Location.new
+    @location.comments.build
+
 
     respond_to do |format|
-      format.html 
-      format.json { render json: @location } 
+      format.html
+      format.json { render json: @location }
     end
   end
 
   def edit
     @location = Location.find(params[:id])
-  
+
     respond_to do |format|
-      format.html 
+      format.html
       format.json { render json: @location }
     end
   end
-  
 
   # POST /locations or /locations.json
   def create
@@ -45,11 +47,22 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to location_url(@location), notice: "Location was successfully created." }
+        format.html do
+          redirect_to location_url(@location),
+                      flash: { notice: 'Location was successfully created.' }
+        end
         format.json { render :show, status: :created, location: @location }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
+        errors_message = @location.errors.full_messages.join(', ')
+        format.html do
+          redirect_to new_location_url,
+                      alert: errors_message,
+                      cstatus: :unprocessable_entity
+        end
+
+        format.json do
+          render json: @location.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -58,11 +71,21 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to location_url(@location), notice: "Location was successfully updated." }
+        format.html do
+          redirect_to location_url(@location),
+                      notice: 'Location was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @location }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
+        errors_message = @location.errors.full_messages.join(', ')
+        format.html do
+          redirect_to edit_location_url, alert:
+          errors_message, status: :unprocessable_entity
+        end
+        format.json do
+          render json: @location.errors,
+                 status: :unprocessable_entity
+        end
       end
     end
   end
@@ -72,19 +95,30 @@ class LocationsController < ApplicationController
     @location.destroy
 
     respond_to do |format|
-      format.html { redirect_to locations_url, notice: "Location was successfully destroyed." }
+      format.html do
+        redirect_to locations_url,
+                    notice: 'Location was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_location
-      @location = Location.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def location_params
-      params.require(:location).permit(:name, :address, :latitude, :longitude)
-    end
+  def set_location
+    @location = Location.find(params[:id])
+  end
+
+  def location_params
+    params.require(:location).permit(
+      :name,
+      :address,
+      :latitude,
+      :longitude,
+      :dates,
+      :content,
+      ratings: Location::CATEGORIES,
+      comments_attributes: [:id, :content, :_destroy]
+    )
+  end
 end

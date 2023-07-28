@@ -1,41 +1,75 @@
 <%= form_with(model: location) do |form| %>
-  <% if location.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <div class="form-group"> 
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :address, style: "display: block" %>
+    <%= form.text_field :address, class: 'form-control' %>
+  </div>
 
-      <ul>
-        <% location.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+  <div class="form-group">
+    <%= form.label :latitude, style: "display: block" %>
+    <%= form.text_field :latitude, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :longitude, style: "display: block" %>
+    <%= form.text_field :longitude, class: 'form-control' %>
+  </div>
+  <br/>
+
+<h4>Rating:</h4>
+<div>
+  <% Location::CATEGORIES.each do |category| %>
+    <div class="form-group">
+      <%= form.label "ratings[#{category}]", category %>
+          <%= form.number_field "ratings[#{category}]",
+                                min: 1,
+                                max: 5,
+                                class: 'form-control rating-input',
+                                step: 1,
+                                value: location.ratings[category] %>
     </div>
   <% end %>
+</div>
 
+  <br/>
+  <h4>Date:</h4>
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.datetime_local_field :dates,
+                             value: Time.now.strftime('%Y-%m-%dT%H:%M'),
+                             class: 'form-control custom-date-field' %>
+
   </div>
 
-  <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div>
-    <%= form.label :latitude, style: "display: block" %>
-    <%= form.text_field :latitude %>
-  </div>
-
-  <div>
-    <%= form.label :longitude, style: "display: block" %>
-    <%= form.text_field :longitude %>
-  </div>
-
-  <div class="mt-4">
-    <div class="actions">
-      <%= form.button "Update Location", type: :submit, class: "btn btn-primary" %>
+<br/>
+<h4>Comments:</h4>
+<div>
+  <%= form.fields_for :comments do |comment_form| %>
+    <div class="field">
+      <%= hidden_field_tag :attachment_urls, nil, id: "attachment-urls" %>
     </div>
-  </div>
+    <%= comment_form.rich_text_area :content,
+                                    class: 'custom-image',
+                                    data: { direct_upload_url: image_uploads_path } %>
+  <% end %>
+</div>
 
+
+
+  <div class="d-flex justify-content-between mt-4">
+    <div class="actions me-4">
+      <% if location.new_record? %>
+        <%= form.button "Create", type: :submit, class: "btn btn-primary" %>
+      <% else %>
+        <%= form.button "Update", type: :submit, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <%= link_to "Go Home", locations_path, class: "btn btn-primary w-100" %>
+    </div>
   </div>
 <% end %>

@@ -1,21 +1,22 @@
 <div class="container d-flex align-items-center justify-content-center">
-  <div>
-    <p style="color: green"><%= notice %></p>
+  <div class="container-md">
     <h1>My Places</h1>
-
-    <div id="locations">
-      <% @locations.each do |location| %>
-        <%= render location %>
-        <p><br>
-          <button class="btn btn-primary" type="button">
-            <%= link_to "Show this location", location_path(location), class: "btn btn-primary" %>
-          </button>
-        </p>
-      <% end %>
+    <% if @locations.length %>
+      <div class="card">
+        <div class="card-body">
+          <div id="locations">
+            <% @locations.each do |location| %>
+              <%= render location %>
+              <p><br>
+                  <%= link_to "View Location", location_path(location), class: "btn btn-primary" %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="container d-flex justify-content-center mt-4">
+        <%= link_to "Add New Location", new_location_path, class: "btn btn-primary" %>
     </div>
-
-    <button class="btn btn-primary" type="button">
-      <%= link_to "Add New Place", new_location_path, class: "btn btn-primary" %>
-    </button>
   </div>
 </div>

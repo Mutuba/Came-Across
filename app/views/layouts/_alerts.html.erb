@@ -1,9 +1,13 @@
 <div class="container d-flex align-items-center justify-content-center">
-  <div>
-    <% if notice %>
-      <p class="notice" style="color: green"><%= notice %></p>
-    <% elsif alert %>
-      <div  style="color: red" class="alert alert-primary" role="alert">
+  <div class="container-md">
+    <% if notice.present? %>
+      <div style="color: green" class="alert alert-primary" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert.present? %>
+      <div style="color: red" class="alert alert-primary" role="alert">
         <%= alert %>
       </div>
     <% end %>
