@@ -20,44 +20,43 @@
   </div>
   <br/>
 
-<h4>Rating:</h4>
-<div>
-  <% Location::CATEGORIES.each do |category| %>
-    <div class="form-group">
-      <%= form.label "ratings[#{category}]", category %>
-          <%= form.number_field "ratings[#{category}]",
-                                min: 1,
-                                max: 5,
-                                class: 'form-control rating-input',
-                                step: 1,
-                                value: location.ratings[category] %>
-    </div>
-  <% end %>
-</div>
+  <h4>Rating:</h4>
+  <div>
+    <% Location::CATEGORIES.each do |category| %>
+      <div class="form-group">
+        <%= form.label "ratings[#{category}]", category %>
+        <%= form.number_field "ratings[#{category}]",
+                              min: 1,
+                              max: 5,
+                              class: 'form-control rating-input',
+                              step: 1,
+                              value: location.ratings[category] %>
+      </div>
+    <% end %>
+  </div>
 
   <br/>
   <h4>Date:</h4>
   <div>
     <%= form.datetime_local_field :dates,
-                             value: Time.now.strftime('%Y-%m-%dT%H:%M'),
-                             class: 'form-control custom-date-field' %>
-
+                                 value: Time.now.strftime('%Y-%m-%dT%H:%M'),
+                                 class: 'form-control custom-date-field' %>
   </div>
 
-<br/>
-<h4>Comments:</h4>
-<div>
-  <%= form.fields_for :comments do |comment_form| %>
-    <div class="field">
-      <%= hidden_field_tag :attachment_urls, nil, id: "attachment-urls" %>
+  <% if action_name == 'new' %>
+    <br/>
+    <h4>Comments:</h4>
+    <div>
+      <%= form.fields_for :comments do |comment_form| %>
+        <div class="field">
+          <%= hidden_field_tag :attachment_urls, nil, id: "attachment-urls" %>
+        </div>
+        <%= comment_form.rich_text_area :content,
+                                        class: 'custom-image',
+                                        data: { direct_upload_url: image_uploads_path } %>
+      <% end %>
     </div>
-    <%= comment_form.rich_text_area :content,
-                                    class: 'custom-image',
-                                    data: { direct_upload_url: image_uploads_path } %>
   <% end %>
-</div>
-
-
 
   <div class="d-flex justify-content-between mt-4">
     <div class="actions me-4">

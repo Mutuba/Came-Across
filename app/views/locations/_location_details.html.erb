@@ -1,0 +1,86 @@
+<div id="<%= dom_id(location) %>">
+
+ <h2><%= location.name %></h2>
+ <% if location.address? %>
+  <p>
+    <strong>Address:</strong>
+    <%= location.address %>
+  </p>
+ <% end %>
+
+  <p>
+    <strong>Latitude:</strong>
+    <%= location.latitude %>
+  </p>
+
+  <p>
+    <strong>Longitude:</strong>
+    <%= location.longitude %>
+  </p>
+
+  <p>
+    <strong>Visited:</strong>
+    <%= "#{time_ago_in_words(location.dates)} ago" if location.dates %>
+  </p>
+
+<% if location.ratings? %>
+  <h2>Impressions</h2>
+  <% location.ratings.each do |category, rating| %>
+    <p><strong><%= category %>:</strong> <%= render_stars(rating) %></p>
+  <% end %>
+<% end %>
+
+  <% marker_data = [{
+    latitude: location.latitude,
+    longitude: location.longitude,
+    tooltip: location.address,
+    label: location.name
+  }]
+  %>
+
+  <!-- Display the map using the js_map helper with specific marker data -->
+  <%= js_map marker_data,
+             style: "mapbox://styles/mapbox/outdoors-v12",  tooltips: { html: true, hover: true } %>
+
+  <!-- Display the comments using rich_text_area content -->
+  <br/>
+    <% if location.comments.any? %>
+      <div class="comments-section">
+        <h2 class="comments-heading">Comments</h2>
+        <div class="comments-content">
+          <% location.comments.each do |comment| %>
+            <%= comment.content %>
+            <br/>
+          <!-- Update/Delete comment section -->
+        <div class="d-flex justify-content-between">
+       
+          <%= button_to "Update Comment", edit_location_comment_path(location, comment), method: :get, class: "btn btn-primary btn-sm mt-2", remote: true %>
+
+
+          <%= form_with(model: comment, url: location_comment_path(location, comment), method: :delete) do |form| %>
+            <%= form.hidden_field :_method, value: :delete %>
+            <%= form.submit "Delete Comment", data: { confirm: "Are you sure you want to delete this comment?" },
+                                            class: "btn btn-danger btn-sm mt-2" %>
+          <% end %>
+        </div>
+
+            <hr>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <br/>
+      <!-- Form to create new comments -->
+    <%= form_with(model: [location, Comment.new], url: location_comments_path(location)) do |form| %>
+      <%= form.hidden_field :location_id, value: location.id %>
+      <%= form.rich_text_area :content, class: 'custom-image', data: { direct_upload_url: image_uploads_path } %>
+      <div class="text-end"> 
+        <%= form.submit "Add comment", class: "btn btn-primary btn-sm mt-2" %>
+      </div>
+    <% end %>
+
+</div>
+
+
+

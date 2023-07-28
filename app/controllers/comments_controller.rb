@@ -1,24 +1,69 @@
 class CommentsController < ApplicationController
+  before_action :find_location, only: [:create, :show, :edit, :update, :destroy]
+
   def create
-    @location = Location.find(params[:location_id])
     @comment = @location.comments.build(comment_params)
     if @comment.save
-      redirect_to @location, notice: 'Comment was successfully created.'
+      respond_to do |format|
+        format.html { redirect_to @location, notice: 'Comment was successfully created.' }
+        format.json { render json: @comment, status: :created, location: @location }
+      end
     else
-      # Handle validation errors if the comment couldn't be saved
-      render 'locations/show'
+      respond_to do |format|
+        errors_message = @comment.errors.full_messages.join(', ')
+        format.html { render 'locations/show', alert: errors_message }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
     end
   end
-  
-  def destroy
-    @location = Location.find(params[:location_id])
+
+  def show
     @comment = @location.comments.find(params[:id])
-    @comment.destroy
-    redirect_to @location, notice: "Comment was successfully deleted."
+    respond_to do |format|
+      format.html
+      format.json { render json: @comment }
+    end
   end
 
+  def edit
+    @comment = @location.comments.find(params[:id])
+    @editing_comment_id = @comment.id
+  end
+
+  def cancel_edit
+    @editing_comment_id = nil
+    redirect_to location_path(params[:location_id])
+  end
+
+  def update
+    @comment = @location.comments.find(params[:id])
+    if @comment.update(comment_params)
+      respond_to do |format|
+        format.html { redirect_to @location, notice: 'Comment was successfully updated.' }
+        format.json { render json: @comment, status: :ok, location: @location }
+      end
+    else
+      respond_to do |format|
+        format.html { render 'locations/show', alert: @comment.errors.full_messages.join(', ') }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @comment = @location.comments.find(params[:id])
+    @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to @location, notice: 'Comment was successfully deleted.' }
+      format.json { head :no_content }
+    end
+  end
 
   private
+
+  def find_location
+    @location = Location.find(params[:location_id])
+  end
 
   def comment_params
     params.require(:comment).permit(:content)

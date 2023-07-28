@@ -4,8 +4,7 @@ class LocationsController < ApplicationController
   before_action :set_location, only: %i[show edit update destroy]
 
   def index
-    @locations = Location.all.order(updated_at: :desc)
-
+    @locations = Location.includes(:comments).order(updated_at: :desc)
     respond_to do |format|
       format.html
       format.json { render json: @locations }

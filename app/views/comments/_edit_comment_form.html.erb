@@ -1,0 +1,10 @@
+<!-- views/comments/_edit_comment_form.html.erb -->
+<%= form_with(model: comment, url: location_comment_path(location, comment), method: :patch, remote: true) do |form| %>
+  <%= form.rich_text_area :content, class: 'custom-image', data: { direct_upload_url: image_uploads_path } %>
+  <div class="text-end"> 
+    <%= form.submit "Update Comment", class: "btn btn-primary btn-sm mt-2" %>
+    <%= button_to "Cancel", cancel_edit_location_comment_path(comment), method: :get, class: "btn btn-secondary btn-sm mt-2" %>
+  </div>
+<% end %>
+
+

@@ -8,7 +8,7 @@
             <% @locations.each do |location| %>
               <%= render location %>
               <p><br>
-                  <%= link_to "View Location", location_path(location), class: "btn btn-primary" %>
+                  <%= link_to "View Location Details", location_path(location), class: "btn btn-primary" %>
               </p>
             <% end %>
           </div>
