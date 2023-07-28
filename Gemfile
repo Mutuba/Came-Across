@@ -78,7 +78,7 @@ group :development do
 end
 
 gem 'webpacker', '~> 5.0'
-
+gem 'kaminari'
 gem 'geocoder', '~> 1.8'
 gem 'mapkick-rb'
 gem 'twitter-bootstrap-rails'

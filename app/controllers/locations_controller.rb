@@ -4,7 +4,10 @@ class LocationsController < ApplicationController
   before_action :set_location, only: %i[show edit update destroy]
 
   def index
-    @locations = Location.includes(:comments).order(updated_at: :desc)
+    @locations = Location.includes(comments: :rich_text_content)
+    .page(params[:page])
+    .order(updated_at: :desc)
+
     respond_to do |format|
       format.html
       format.json { render json: @locations }
@@ -13,6 +16,7 @@ class LocationsController < ApplicationController
 
   # GET /locations/1 or /locations/1.json
   def show
+    @comments = @location.comments.page(params[:page]).order(created_at: :desc)
     respond_to do |format|
       format.html
       format.json { render json: @location }
@@ -105,17 +109,15 @@ class LocationsController < ApplicationController
   private
 
   def set_location
-    @location = Location.find(params[:id])
+    @location = Location.includes(comments: :rich_text_content).find(params[:id])
   end
 
   def location_params
     params.require(:location).permit(
       :name,
-      :address,
       :latitude,
       :longitude,
       :dates,
-      :content,
       ratings: Location::CATEGORIES,
       comments_attributes: [:id, :content, :_destroy]
     )
