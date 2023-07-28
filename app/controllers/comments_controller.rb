@@ -32,9 +32,9 @@ class CommentsController < ApplicationController
   def cancel_edit
     respond_to do |format|
       format.html { redirect_to @location, notice: 'Changes not saved.' }
-      format.json { render json: { status: 'error', message: 'Changes not saved.' } }
+      format.json { render json: { status: 'error', message: 'Changes not saved.' }, status: :unprocessable_entity }
     end
-  end
+  end  
 
   def update
     @comment = @location.comments.find(params[:id])
