@@ -23,7 +23,6 @@
             <% @locations.each do |location| %>
               <%= render location %>
               <p><br>
-                <%= link_to "View Location Details", location_path(location), class: "btn btn-primary" %>
               </p>
             <% end %>
           </div>
@@ -44,6 +43,6 @@
         <a href="#" class="btn btn-primary disabled" tabindex="-1" aria-disabled="true" style="min-width: 100px;">Next</a>
       <% end %>
     </div>
-    
+
   </div>
 </div>

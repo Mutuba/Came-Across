@@ -27,12 +27,13 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = @location.comments.find(params[:id])
-    @editing_comment_id = @comment.id
   end
 
   def cancel_edit
-    @editing_comment_id = nil
-    redirect_to location_path(params[:location_id])
+    respond_to do |format|
+      format.html { redirect_to @location, notice: 'Changes not saved.' }
+      format.json { render json: { status: 'error', message: 'Changes not saved.' } }
+    end
   end
 
   def update

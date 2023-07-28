@@ -1,36 +1,38 @@
 <div class="card" style="width: 100%;">
   <div class="card-body">
-    <h5 class="card-title"><h2><%= location.name %></h2></h5>
+    <h5 class="card-title">
+      <h2><%= location.name %></h2>
+    </h5>
 
-    <div id="<%= dom_id(location) %>">
-      <% if location.address? %>
-        <p>
-          <strong>Address:</strong>
-          <%= location.address %>
-        </p>
+    <% if location.address? %>
+      <p class="lead">
+        Address:
+        <%= location.address %>
+      </p>
+    <% end %>
+
+    <p class="lead">
+      Latitude:
+      <%= location.latitude %>
+    </p>
+
+    <p class="lead">
+      Longitude:
+      <%= location.longitude %>
+    </p>
+
+    <p class="lead">
+      Visited:
+      <%= "#{time_ago_in_words(location.dates)} ago" if location.dates %>
+    </p>
+
+    <% if location.ratings? %>
+      <h2>Ratings</h2>
+      <% location.ratings.each do |category, rating| %>
+        <p class="lead"><%= category %>: <p><%= render_stars(rating) %></p></p>
       <% end %>
+    <% end %>
 
-      <p>
-        <strong>Latitude:</strong>
-        <%= location.latitude %>
-      </p>
-
-      <p>
-        <strong>Longitude:</strong>
-        <%= location.longitude %>
-      </p>
-
-      <p>
-        <strong>Visited:</strong>
-        <%= "#{time_ago_in_words(location.dates)} ago" if location.dates %>
-      </p>
-
-      <% if location.ratings? %>
-        <h2>Impressions</h2>
-        <% location.ratings.each do |category, rating| %>
-          <p><strong><%= category %>:</strong> <%= render_stars(rating) %></p>
-        <% end %>
-      <% end %>
-    </div>
+    <%= link_to "View Location Details", location_path(location), class: "btn btn-primary" %>
   </div>
 </div>
