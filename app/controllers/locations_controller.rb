@@ -47,7 +47,6 @@ class LocationsController < ApplicationController
   # POST /locations or /locations.json
   def create
     @location = Location.new(location_params)
-
     respond_to do |format|
       if @location.save
         format.html do
