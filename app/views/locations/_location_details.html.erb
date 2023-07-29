@@ -20,10 +20,12 @@
     <%= location.longitude %>
   </p>
 
+  <% if location.dates? %>
   <p class="lead">
     Visited:
-    <%= "#{time_ago_in_words(location.dates)} ago" if location.dates %>
+      <%= content_tag :span, location.dates.utc.strftime('%Y-%m-%d %H:%M'), data: { utc_time: location.dates.utc.iso8601 } %>
   </p>
+  <% end %>
 
   <% if location.ratings? %>
     <h4>Ratings</h4>

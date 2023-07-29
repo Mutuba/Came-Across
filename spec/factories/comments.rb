@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :comment do
-    location { nil }
+    association :location, factory: :location
+    content { 'I loved the place' }
   end
 end

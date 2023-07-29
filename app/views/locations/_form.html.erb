@@ -34,9 +34,9 @@
   <br/>
   <h4>Date:</h4>
   <div>
-    <%= form.datetime_local_field :dates,
-                                 value: Time.now.strftime('%Y-%m-%dT%H:%M'),
-                                 class: 'form-control custom-date-field' %>
+<%= form.datetime_local_field :dates,
+                             class: 'form-control custom-date-field' %>
+
   </div>
 
   <% if action_name == 'new' %>

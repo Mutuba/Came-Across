@@ -5,8 +5,8 @@ class LocationsController < ApplicationController
 
   def index
     @locations = Location.includes(comments: :rich_text_content)
-    .page(params[:page])
-    .order(updated_at: :desc)
+                         .page(params[:page])
+                         .order(updated_at: :desc)
 
     respond_to do |format|
       format.html
@@ -27,7 +27,6 @@ class LocationsController < ApplicationController
   def new
     @location = Location.new
     @location.comments.build
-
 
     respond_to do |format|
       format.html
@@ -118,7 +117,7 @@ class LocationsController < ApplicationController
       :longitude,
       :dates,
       ratings: Location::CATEGORIES,
-      comments_attributes: [:id, :content, :_destroy]
+      comments_attributes: %i[id content _destroy]
     )
   end
 end

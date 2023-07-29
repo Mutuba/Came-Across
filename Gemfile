@@ -46,13 +46,15 @@ gem 'bootsnap', require: false
 
 # Use Sass to process CSS
 # gem "sassc-rails"
+gem 'simplecov', require: false, group: :test
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'byebug'
+  gem 'byebug', platform: :mri
+  gem 'capybara'
   gem 'database_cleaner'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'debug', platforms: %i[mri mingw x64_mingw]
@@ -60,8 +62,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails', '>= 3.9.0'
-  gem 'rspec-rails', '>= 3.9.0'
-  gem 'rubocop', '~> 0.77'
   gem 'rubocop-rails', '~> 2.3'
   gem 'shoulda-matchers'
 end
@@ -77,11 +77,11 @@ group :development do
   # gem "spring"
 end
 
-gem 'webpacker', '~> 5.0'
-gem 'kaminari'
 gem 'geocoder', '~> 1.8'
+gem 'kaminari'
 gem 'mapkick-rb'
 gem 'twitter-bootstrap-rails'
+gem 'webpacker', '~> 5.0'
 # Asset management
 gem 'cloudinary'
 gem 'trix'

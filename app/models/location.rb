@@ -7,7 +7,7 @@ class Location < ApplicationRecord
   has_many :comments, dependent: :destroy
   accepts_nested_attributes_for :comments, reject_if: :reject_blank_comment, allow_destroy: true
 
-  serialize :ratings, Hash
+  before_validation :process_ratings
 
   def self.update_categories
     const_set(:CATEGORIES, Category.pluck(:name).freeze)
@@ -15,13 +15,17 @@ class Location < ApplicationRecord
 
   update_categories
 
-  def ratings=(value)
-    ratings_data = {}
+  def process_ratings
+    ratings_data = ratings.reject { |_, value| value.blank? }
+    self.ratings = {} if ratings_data.blank?
+
+    return if ratings_data.blank?
+
     CATEGORIES.each do |category|
-      rating = value[category]
+      rating = ratings_data[category]
       ratings_data[category] = rating.to_i if rating.present?
     end
-    self[:ratings] = ratings_data
+    self.ratings = ratings_data
   end
 
   private

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
-  before_action :find_location, only: [:create, :show, :edit, :update, :destroy]
+  before_action :find_location, only: %i[create show edit update destroy]
 
   def create
     @comment = @location.comments.build(comment_params)
@@ -34,7 +36,7 @@ class CommentsController < ApplicationController
       format.html { redirect_to @location, notice: 'Changes not saved.' }
       format.json { render json: { status: 'error', message: 'Changes not saved.' }, status: :unprocessable_entity }
     end
-  end  
+  end
 
   def update
     @comment = @location.comments.find(params[:id])
