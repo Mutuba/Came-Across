@@ -61,6 +61,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'rails-controller-testing'
   gem 'rspec-rails', '>= 3.9.0'
   gem 'rubocop-rails', '~> 2.3'
   gem 'shoulda-matchers'

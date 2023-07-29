@@ -57,8 +57,7 @@ class LocationsController < ApplicationController
         errors_message = @location.errors.full_messages.join(', ')
         format.html do
           redirect_to new_location_url,
-                      alert: errors_message,
-                      cstatus: :unprocessable_entity
+                      alert: errors_message
         end
 
         format.json do
@@ -80,8 +79,7 @@ class LocationsController < ApplicationController
       else
         errors_message = @location.errors.full_messages.join(', ')
         format.html do
-          redirect_to edit_location_url, alert:
-          errors_message, status: :unprocessable_entity
+          redirect_to edit_location_url, alert: errors_message
         end
         format.json do
           render json: @location.errors,
