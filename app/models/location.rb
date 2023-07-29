@@ -15,20 +15,22 @@ class Location < ApplicationRecord
 
   update_categories
 
+  private
+
   def process_ratings
     ratings_data = ratings.reject { |_, value| value.blank? }
     self.ratings = {} if ratings_data.blank?
 
     return if ratings_data.blank?
 
+    transformed_hash = ratings_data.transform_values(&:to_i)
     CATEGORIES.each do |category|
-      rating = ratings_data[category]
-      ratings_data[category] = rating.to_i if rating.present?
+      rating = transformed_hash[category]
+      transformed_hash[category] = rating if rating.present?
     end
-    self.ratings = ratings_data
-  end
 
-  private
+    self.ratings = transformed_hash
+  end
 
   def reject_blank_comment(attributes)
     attributes['content'].blank?

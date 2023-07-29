@@ -1,27 +1,29 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/danielmutuba/Desktop/came-across/spec/models/comment_spec.rb": {
+      "/Users/danielmutuba/Desktop/came-across/spec/models/category_spec.rb": {
         "lines": [
           null,
           null,
           1,
           null,
           1,
-          4,
-          null,
           1,
+          5,
+          null,
           2,
-          null,
-          null,
-          1,
-          3,
-          null,
           2,
           null,
           1,
           1,
           1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
           1,
           1,
           1,
@@ -85,8 +87,8 @@
           null,
           null,
           1,
-          3,
-          3,
+          4,
+          4,
           null,
           null,
           null,
@@ -364,6 +366,17 @@
           null
         ]
       },
+      "/Users/danielmutuba/Desktop/came-across/spec/factories/categories.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
       "/Users/danielmutuba/Desktop/came-across/spec/factories/comments.rb": {
         "lines": [
           null,
@@ -382,10 +395,10 @@
           null,
           1,
           1,
-          3,
-          3,
-          3,
-          null,
+          1,
+          1,
+          1,
+          1,
           null,
           null
         ]
@@ -457,14 +470,11 @@
           null
         ]
       },
-      "/Users/danielmutuba/Desktop/came-across/app/models/comment.rb": {
+      "/Users/danielmutuba/Desktop/came-across/app/models/category.rb": {
         "lines": [
           null,
           null,
           1,
-          1,
-          1,
-          null,
           1,
           null
         ]
@@ -477,57 +487,8 @@
           1,
           null
         ]
-      },
-      "/Users/danielmutuba/Desktop/came-across/app/models/location.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          1,
-          2,
-          2,
-          null,
-          2,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null
-        ]
-      },
-      "/Users/danielmutuba/Desktop/came-across/app/models/category.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          null
-        ]
       }
     },
-    "timestamp": 1690625622
+    "timestamp": 1690629096
   }
 }
