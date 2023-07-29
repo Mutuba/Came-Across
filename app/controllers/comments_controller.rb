@@ -28,9 +28,9 @@ class CommentsController < ApplicationController
 
   def edit; end
 
-  def cancel_edit
+  def cancel_edit    
     respond_to do |format|
-      format.html { redirect_to @location, notice: 'Changes not saved.' }
+      format.html { redirect_to @location, notice: 'Changes were not saved.' }
       format.json { render json: { message: 'Changes not saved.' }, status: :unprocessable_entity }
     end
   end
