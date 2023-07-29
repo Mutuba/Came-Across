@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :find_location, only: %i[create show edit update destroy]
+  before_action :set_location, only: %i[create show edit update destroy cancel_edit]
+  before_action :set_comment, only: %i[show edit update destroy]
 
   def create
     @comment = @location.comments.build(comment_params)
@@ -13,33 +14,28 @@ class CommentsController < ApplicationController
     else
       respond_to do |format|
         errors_message = @comment.errors.full_messages.join(', ')
-        format.html { render 'locations/show', alert: errors_message }
+        format.html { redirect_to @location, notice: errors_message }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def show
-    @comment = @location.comments.find(params[:id])
     respond_to do |format|
-      format.html
       format.json { render json: @comment }
     end
   end
 
-  def edit
-    @comment = @location.comments.find(params[:id])
-  end
+  def edit; end
 
   def cancel_edit
     respond_to do |format|
       format.html { redirect_to @location, notice: 'Changes not saved.' }
-      format.json { render json: { status: 'error', message: 'Changes not saved.' }, status: :unprocessable_entity }
+      format.json { render json: { message: 'Changes not saved.' }, status: :unprocessable_entity }
     end
   end
 
   def update
-    @comment = @location.comments.find(params[:id])
     if @comment.update(comment_params)
       respond_to do |format|
         format.html { redirect_to @location, notice: 'Comment was successfully updated.' }
@@ -47,14 +43,16 @@ class CommentsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render 'locations/show', alert: @comment.errors.full_messages.join(', ') }
+        format.html do
+          render 'locations/show',
+                 alert: @comment.errors.full_messages.join(', ')
+        end
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @comment = @location.comments.find(params[:id])
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to @location, notice: 'Comment was successfully deleted.' }
@@ -64,8 +62,13 @@ class CommentsController < ApplicationController
 
   private
 
-  def find_location
+  def set_location
     @location = Location.find(params[:location_id])
+  end
+
+  def set_comment
+    location = Location.find(params[:location_id])
+    @comment = location.comments.find(params[:id])
   end
 
   def comment_params
