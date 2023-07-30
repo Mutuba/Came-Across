@@ -78,11 +78,14 @@ group :development do
   # gem "spring"
 end
 
+group :test do
+  gem 'database_rewinder'
+end
+
 gem 'geocoder', '~> 1.8'
 gem 'kaminari'
 gem 'mapkick-rb'
 gem 'twitter-bootstrap-rails'
-gem 'webpacker', '~> 5.0'
 # Asset management
 gem 'cloudinary'
 gem 'trix'

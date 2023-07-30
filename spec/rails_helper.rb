@@ -54,6 +54,14 @@ RSpec.configure do |config|
     end
   end
 
+  config.before(:suite) do
+    DatabaseRewinder.clean_all
+  end
+
+  config.after(:each) do
+    DatabaseRewinder.clean
+  end
+
   ActiveJob::Base.queue_adapter = :test
 
   config.around(:each, :inline_sidekiq_testing) do |example|
