@@ -5,4 +5,7 @@ class Comment < ApplicationRecord
   has_rich_text :content
 
   validates :content, presence: true
+
+  paginates_per 4
+
 end

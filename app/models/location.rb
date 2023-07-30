@@ -9,6 +9,8 @@ class Location < ApplicationRecord
 
   before_validation :process_ratings
 
+  paginates_per 10
+
   def self.update_categories
     const_set(:CATEGORIES, Category.pluck(:name).freeze)
   end
