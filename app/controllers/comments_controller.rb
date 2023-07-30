@@ -31,11 +31,14 @@ class CommentsController < ApplicationController
   def cancel_edit
     respond_to do |format|
       format.html { redirect_to @location, notice: 'Changes were not saved.' }
-      format.json { render json: { message: 'Changes not saved.' }, status: :unprocessable_entity }
+      format.json do
+        render json: { message: 'Changes were not saved.' }, status: :unprocessable_entity
+      end
     end
   end
 
   def update
+    @commments = @location.comments
     if @comment.update(comment_params)
       respond_to do |format|
         format.html { redirect_to @location, notice: 'Comment was successfully updated.' }
@@ -44,8 +47,7 @@ class CommentsController < ApplicationController
     else
       respond_to do |format|
         format.html do
-          render 'locations/show',
-                 alert: @comment.errors.full_messages.join(', ')
+          redirect_to @location, alert: @comment.errors.full_messages.join(', ')
         end
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end

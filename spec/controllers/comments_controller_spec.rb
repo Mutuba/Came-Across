@@ -41,7 +41,7 @@ RSpec.describe CommentsController, type: :controller do
         end.to_not change(Comment, :count)
       end
 
-      it 're-renders the location show template' do
+      it 'redirects the location show template' do
         post :create, params: { location_id: location.id, comment: invalid_attributes }
         expect(response).to redirect_to(location)
       end
@@ -100,7 +100,9 @@ RSpec.describe CommentsController, type: :controller do
       end
 
       it 'returns a success JSON response' do
-        patch :update, params: { location_id: location.id, id: comment.id, comment: valid_attributes }, format: :json
+        patch :update, params: {
+          location_id: location.id, id: comment.id, comment: valid_attributes
+        }, format: :json
         expect(response).to have_http_status(:ok)
         expect(json).not_to be_empty
       end
@@ -116,13 +118,21 @@ RSpec.describe CommentsController, type: :controller do
         expect(comment.content).to eq(original_content)
       end
 
-      it 're-renders the location show template' do
-        patch :update, params: { location_id: location.id, id: comment.id, comment: invalid_attributes }
-        expect(response).to render_template('locations/show')
+      it 'redirects the location template' do
+        patch :update, params: {
+          location_id: location.id,
+          id: comment.id,
+          comment: invalid_attributes
+        }
+        expect(response).to redirect_to(location)
       end
 
       it 'returns an error JSON response' do
-        patch :update, params: { location_id: location.id, id: comment.id, comment: invalid_attributes }, format: :json
+        patch :update, params: {
+          location_id: location.id,
+          id: comment.id,
+          comment: invalid_attributes
+        }, format: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(json).to have_key('content')
       end
@@ -162,7 +172,7 @@ RSpec.describe CommentsController, type: :controller do
         get :cancel_edit, params: { location_id: location.id, id: comment.id }, format: :html
 
         expect(response).to redirect_to(location)
-        expect(flash[:notice]).to eq('Changes not saved.')
+        expect(flash[:notice]).to eq('Changes were not saved.')
       end
     end
 
@@ -170,7 +180,7 @@ RSpec.describe CommentsController, type: :controller do
       it 'returns the correct JSON response' do
         post :cancel_edit, params: { location_id: location.id, id: comment.id }, format: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(json['message']).to eq('Changes not saved.')
+        expect(json['message']).to eq('Changes were not saved.')
       end
     end
   end

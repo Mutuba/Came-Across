@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# spec/controllers/asset_uploads_controller_spec.rb
+# spec/requests/image_uploads_spec.rb
 require 'rails_helper'
 
-RSpec.describe AssetUploadsController, type: :controller do
-  describe 'POST #create' do
+RSpec.describe 'ImageUploads', type: :request do
+  describe 'POST /image_uploads' do
     let(:file) do
       Rack::Test::UploadedFile.new(
         Rails.root.join('spec',
@@ -12,7 +12,7 @@ RSpec.describe AssetUploadsController, type: :controller do
       )
     end
 
-    context 'with valid file' do
+    context 'with a valid file' do
       before do
         expect(ActionDispatch::Http::UploadedFile).to receive(:new)
           .and_return(file)
@@ -24,26 +24,23 @@ RSpec.describe AssetUploadsController, type: :controller do
               success: true, secure_url: 'https://example.com/image.jpeg'
             )
           )
-
-        post :create, params: { file: file }
+        post asset_uploads_path, params: { file: file }
       end
 
       it 'returns a successful response' do
         expect(response).to have_http_status(:success)
-
-        expect(response).to be_successful
       end
 
       it 'returns the URL of the uploaded image' do
         json_response = JSON.parse(response.body)
         expect(json_response).to have_key('url')
-        expect(json['url']).to eq('https://example.com/image.jpeg')
+        expect(json_response['url']).to eq('https://example.com/image.jpeg')
       end
     end
 
-    context 'with nil file' do
+    context 'with a nil file' do
       before do
-        post :create, params: { file: nil }
+        post asset_uploads_path, params: { file: nil }
       end
 
       it 'returns an unprocessable entity status' do
@@ -56,7 +53,7 @@ RSpec.describe AssetUploadsController, type: :controller do
       end
     end
 
-    context 'with possibly malformed file' do
+    context 'with a possibly malformed file' do
       before do
         expect(ActionDispatch::Http::UploadedFile).to receive(:new)
           .and_return(file)
@@ -65,10 +62,10 @@ RSpec.describe AssetUploadsController, type: :controller do
           .with(file: file, folder: 'come_across_uploads')
           .and_return(
             OpenStruct.new(
-              success: false, secure_url: nil, error_message: 'Invalid file'
+              success: false, error_message: 'malformed file'
             )
           )
-        post :create, params: { file: file }
+        post asset_uploads_path, params: { file: file }
       end
 
       it 'returns an unprocessable entity status' do

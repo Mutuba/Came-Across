@@ -1,16 +1,16 @@
   <div class="accordion" id="accordionExample">
     <div class="accordion-item">
       <h2 class="accordion-header">
-        <button class="accordion-button <%= 'collapsed' if @comments.empty? %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="<%= !@comments.empty? %>" aria-controls="collapseOne">
+        <button class="accordion-button <%= 'collapsed' if @comments&.blank? %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="<%= !@comments&.blank? %>" aria-controls="collapseOne">
           <h2 class="comments-heading">Comments</h2>
         </button>
       </h2>
-      <div id="collapseOne" class="accordion-collapse collapse <%= 'show' unless @comments.empty? %>" data-bs-parent="#accordionExample">
+      <div id="collapseOne" class="accordion-collapse collapse <%= 'show' unless @comments&.blank? %>" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <% if @comments.size > 0 %>
+          <% if @comments&.size > 0 %>
             <div class="comments-section">
               <div class="comments-content">
-                <% @comments.each do |comment| %>
+                <% @comments&.each do |comment| %>
                   <div style="display: flex; flex-direction: column;">
                     <div style="padding: 0.5rem; background-color: #f0f0f0; border-radius: 0.25rem; margin-top: 0.75rem;">
                       <small> <%= comment.content %> </small>
@@ -32,7 +32,7 @@
 
           <!-- Comments pagination -->
           <div class="d-flex justify-content-between mt-4">
-            <% if @comments.prev_page %>
+            <% if @comments&.prev_page %>
               <a href="<%= url_for(page: @comments.prev_page) %>" style="text-decoration: none;">
                 <span style="font-size: 1.5rem;" aria-hidden="true">&laquo;</span>
               </a>
@@ -40,8 +40,8 @@
               <span style="font-size: 1.5rem; color: #6c757d;" aria-hidden="true">&laquo;</span>
             <% end %>
 
-            <% if @comments.next_page %>
-              <a href="<%= url_for(page: @comments.next_page) %>" style="text-decoration: none;">
+            <% if @comments&.next_page %>
+              <a href="<%= url_for(page: @comments&.next_page) %>" style="text-decoration: none;">
                 <span style="font-size: 1.5rem;" aria-hidden="true">&raquo;</span>
               </a>
             <% else %>
