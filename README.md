@@ -1,24 +1,55 @@
-# README
+README
+Come Across that list the places a person has visited and lets the user creates new entries.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The application offers two main functions:
 
-Things you may want to cover:
+1. Ability to view places one has visited
+2. Ability to add new entries
 
-* Ruby version
+This application uses Ruby version 3.1.2 To install, use rvm or rbenv.
 
-* System dependencies
+RVM
 
-* Configuration
+rvm install 3.0.2
 
-* Database creation
+rvm use 3.0.2
 
-* Database initialization
+Rbenv
+rbenv install 3.0.2
 
-* How to run the test suite
+Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed. I recommend bundler version 2.0.2. To install:
 
-* Services (job queues, cache servers, search engines, etc.)
+You need Rails. The rails version being used is rails version 7
 
-* Deployment instructions
+To install:
 
-* ...
+gem install rails -v '~> 7'
+
+\*To get up and running with the project locally, follow the following steps.
+
+Clone the app
+
+With SSH
+
+git@github.com:Mutuba/Came-Across.git
+
+With HTTPS
+https://github.com/Mutuba/Came-Across.git
+
+Move into the directory and install all the requirements.
+
+cd came-across
+
+run bundle install to install application packages
+
+Run rails db:create to create a database for the application
+
+Run rails db:migrate to run database migrations and create database tables
+
+The application can be run by running the below command:-
+
+rails s or rails server
+
+The application uses redis and sidekiq for backgroun d job processing
+Run this commands in separate terminals to start redis and sidekiq
+redis-server to start redis server and bundle exec sidekiq to start sidekiq server
