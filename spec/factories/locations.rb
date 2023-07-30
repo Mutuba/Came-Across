@@ -8,8 +8,8 @@ FactoryBot.define do
     address { '6 Rue de Bône, 06400 Cannes' }
 
     trait :location_with_comments do
-      after :create do |location|
-        create_list :comment, 3, location: location
+      after :build do |location|
+        build_list :comment, 3, location: location
       end
     end
   end
