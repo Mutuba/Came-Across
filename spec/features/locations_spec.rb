@@ -43,4 +43,22 @@ RSpec.feature 'Locations', type: :feature do
     # Check if the message for no locations is displayed
     expect(page).to have_content('Sorry, not sure if this is what you expected, locations have not been added yet!')
   end
+
+  scenario 'User clicks on Add New Location button' do
+    visit locations_path
+    click_link('Add New Location')
+    expect(page).to have_current_path(new_location_path)
+    expect(page).to have_css('form[action="/locations"]')
+    expect(page).to have_field('location[name]')
+    expect(page).to have_field('location[latitude]')
+    expect(page).to have_field('location[longitude]')
+
+    Location::CATEGORIES.each do |category|
+      expect(page).to have_field("location[ratings[#{category}]]")
+    end
+
+    expect(page).to have_field('location[dates]')
+
+    expect(page).to have_link('Go Home', href: locations_path)
+  end
 end

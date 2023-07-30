@@ -2,7 +2,6 @@
 
 require 'spec_helper'
 require 'database_cleaner'
-# require 'sidekiq/testing/inline'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
