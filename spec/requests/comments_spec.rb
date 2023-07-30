@@ -4,7 +4,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Comments', type: :request do
-  let(:location) { create(:location, :location_with_comments) }
+  let(:location) { create(:location) }
 
   describe 'POST #create' do
     context 'with valid params' do
@@ -121,7 +121,7 @@ RSpec.describe 'Comments', type: :request do
 
       it 're-renders the location show template' do
         patch location_comment_path(location, comment), params: { comment: invalid_attributes }
-        expect(response).to render_template('locations/show')
+        expect(response).to redirect_to(location_url(location))
       end
 
       it 'returns an error JSON response' do

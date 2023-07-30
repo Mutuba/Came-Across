@@ -38,7 +38,6 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @commments = @location.comments
     if @comment.update(comment_params)
       respond_to do |format|
         format.html { redirect_to @location, notice: 'Comment was successfully updated.' }
