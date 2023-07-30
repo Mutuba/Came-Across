@@ -178,7 +178,7 @@ RSpec.describe CommentsController, type: :controller do
 
     context 'when format is JSON' do
       it 'returns the correct JSON response' do
-        post :cancel_edit, params: { location_id: location.id, id: comment.id }, format: :json
+        get :cancel_edit, params: { location_id: location.id, id: comment.id }, format: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(json['message']).to eq('Changes were not saved.')
       end

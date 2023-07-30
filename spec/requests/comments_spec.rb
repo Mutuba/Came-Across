@@ -163,18 +163,18 @@ RSpec.describe 'Comments', type: :request do
 
     context 'when format is HTML' do
       it 'redirects to the location and sets the notice message' do
-        get cancel_edit_location_comment_path(location, comment), format: :html
+        get cancel_edit_location_comment_path(location, comment), as: :html
 
         expect(response).to redirect_to(location)
-        expect(flash[:notice]).to eq('Changes not saved.')
+        expect(flash[:notice]).to eq('Changes were not saved.')
       end
     end
 
     context 'when format is JSON' do
       it 'returns the correct JSON response' do
-        post cancel_edit_location_comment_path(location, comment), format: :json
+        get cancel_edit_location_comment_path(location, comment), as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(json['message']).to eq('Changes not saved.')
+        expect(json['message']).to eq('Changes were not saved.')
       end
     end
   end
