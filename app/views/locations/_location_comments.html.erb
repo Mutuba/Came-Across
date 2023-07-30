@@ -57,7 +57,7 @@
     <!-- Form to create new comments -->
     <%= form_with(model: [location, Comment.new], url: location_comments_path(location)) do |form| %>
       <%= form.hidden_field :location_id, value: location.id %>
-      <%= form.rich_text_area :content, class: 'custom-image', data: { direct_upload_url: image_uploads_path } %>
+      <%= form.rich_text_area :content, class: 'custom-image', data: { direct_upload_url: asset_uploads_path } %>
       <div class="text-end"> 
         <%= form.submit "Add comment", class: "btn btn-primary btn-sm mt-2" %>
       </div>

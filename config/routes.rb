@@ -10,5 +10,5 @@ Rails.application.routes.draw do
       end
     end
   end
-  post 'image_uploads', to: 'image_uploads#create'
+  post 'asset_uploads', to: 'asset_uploads#create'
 end

@@ -5,7 +5,7 @@ document.addEventListener("trix-attachment-add", function (event) {
     var form_data = new FormData();
     form_data.append("file", file);
 
-    fetch("/image_uploads", {
+    fetch("/asset_uploads", {
       method: "POST",
       body: form_data,
     })
