@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/services/cloudinary_upload_service_spec.rb
 
 require 'rails_helper'
