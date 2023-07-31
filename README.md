@@ -87,16 +87,33 @@ To run tests
 
 Set application without Docker.
 
-run bundle install to install application packages
+This application uses Ruby version 3.1.2 To install, use rvm or rbenv.
 
-Run rails db:create to create a database for the application
+RVM
 
-Run rails db:migrate to run database migrations and create database tables
+rvm install 3.0.2
+
+rvm use 3.0.2
+
+Rbenv
+rbenv install 3.0.2
+
+Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed. I recommend bundler version 2.0.2. To install:
+
+You need Rails. The rails version being used is rails version 7
+
+To install:
+
+gem install rails -v '~> 7'
+
+run `bundle install` to install application packages.
+
+Run `rails db:create` to create a database for the application
+
+Run `rails db:migrate` to run database migrations and create database tables
+
+Run `rails db:seed` to initialize the database with seed data
 
 The application can be run by running the below command:-
 
-rails s or rails server
-
-The application uses redis and sidekiq for backgroun d job processing
-Run this commands in separate terminals to start redis and sidekiq
-redis-server to start redis server and bundle exec sidekiq to start sidekiq server
+`rails s or rails server`
