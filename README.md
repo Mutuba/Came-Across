@@ -1,4 +1,3 @@
-README
 Come Across that list the places a person has visited and lets the user creates new entries.
 
 The application offers two main functions:
