@@ -114,6 +114,7 @@ class LocationsController < ApplicationController
       :latitude,
       :longitude,
       :dates,
+      :address,
       ratings: Location::CATEGORIES,
       comments_attributes: %i[content]
     )
