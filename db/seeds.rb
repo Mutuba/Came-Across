@@ -23,6 +23,6 @@ Location.create!(name: name, address: address, latitude: 36.1167079, longitude: 
 
 # Seed predefined categories
 
-Category.create!(name: 'Landscape')
-Category.create!(name: 'People')
-Category.create!(name: 'Food')
+# Category.create!(name: 'Landscape')
+# Category.create!(name: 'People')
+# Category.create!(name: 'Food')
