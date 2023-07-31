@@ -15,7 +15,7 @@
                     <div style="padding: 0.5rem; background-color: #f0f0f0; border-radius: 0.25rem; margin-top: 0.75rem;">
                       <small> <%= comment.content %> </small>
                       <br/>
-                      <small>Posted: <%= "#{time_ago_in_words(comment.created_at)} ago" %> </small>
+                      <small>Posted: <%= "#{time_ago_in_words(comment.created_at.in_time_zone)} ago" %> </small>
                       <br/>
                       <br/>
                       <!-- Update/Delete comment section -->
