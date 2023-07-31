@@ -68,9 +68,9 @@ This will start the postgres terminal within docker container.
 
 Run `CREATE DATABASE your_db_for_the_app;` and then run `GRANT ALL PRIVILEGES ON DATABASE your_db_for_the_app TO your_user_for_the_app;`
 
-This will crate a database for postres service and the app in general.
+This will create a database for postgres service and the app in general.
 
-Create a .env file and update each environment variable from the .env.sample file with your credentials for the postgres database you have created.
+- Create a .env file and update each environment variable from the `.env.sample` file with your credentials for the postgres database you have created.
 
 For cloudinary, you need to have an account, a free account will do, then go the dashboard and copy `CLOUD_NAME`, `API_KEY`, and `API_SECRET`.
 
@@ -90,24 +90,25 @@ To run tests
 
 # Set application without Docker.
 
-This application uses Ruby version 3.1.2 To install, use rvm or rbenv.
+- This application uses Ruby version 3.1.2 To install, use rvm or rbenv.
 
-RVM
+# RVM
 
-rvm install 3.0.2
+- rvm install 3.0.2
 
-rvm use 3.0.2
+- rvm use 3.0.2
 
-Rbenv
-rbenv install 3.0.2
+# Rbenv
 
-Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed. I recommend bundler version 2.0.2. To install:
+- rbenv install 3.0.2
 
-You need Rails. The rails version being used is rails version 7
+- Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed. I recommend bundler version 2.0.2. To install:
 
-To install:
+- You need Rails. The rails version being used is rails version 7
 
-gem install rails -v '~> 7'
+- To install:
+
+`gem install rails -v '~> 7'`
 
 - Run `bundle install` to install application packages.
 
