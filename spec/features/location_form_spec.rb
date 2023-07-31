@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/features/location_form_spec.rb
 
 require 'rails_helper'

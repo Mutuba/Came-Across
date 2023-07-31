@@ -7,5 +7,4 @@ class Comment < ApplicationRecord
   validates :content, presence: true
 
   paginates_per 4
-
 end
