@@ -13,7 +13,6 @@ RSpec.describe 'Viewing Location Details', type: :feature do
   end
 
   scenario 'User clicks on View Location Details button' do
-    # Navigate to the page with the View Location Details button
     visit locations_path
 
     # Click on the View Location Details button
@@ -22,7 +21,6 @@ RSpec.describe 'Viewing Location Details', type: :feature do
     # Assert that we are now on the location details page
     expect(page).to have_current_path(location_path(location))
 
-    # Assert that the location details are displayed on the page
     expect(page).to have_content('Test Location')
     expect(page).to have_content('Latitude: 43.5521568')
     expect(page).to have_content('Longitude: 7.0288897')
