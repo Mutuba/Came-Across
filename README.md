@@ -1,9 +1,11 @@
+## README.md
+
 Come Across that list the places a person has visited and lets the user creates new entries.
 
 The application offers two main functions:
 
-1. Ability to view places one has visited
-2. Ability to add new entries
+- Ability to view places one has visited
+- Ability to add new entries
 
 This application uses Ruby version 3.1.2 To install, use rvm or rbenv.
 
@@ -13,8 +15,8 @@ rvm install 3.0.2
 
 rvm use 3.0.2
 
-Rbenv
-rbenv install 3.0.2
+- Rbenv
+  rbenv install 3.0.2
 
 Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed. I recommend bundler version 2.0.2. To install:
 
@@ -39,9 +41,9 @@ Move into the directory and install all the requirements.
 
 cd came-across
 
-Setup with Docker
+# Setup with Docker
 
-Ensure Docker is installed
+- Ensure Docker is installed
 
 Run `docker-compose build` to build the Docker image for the application.
 
@@ -85,7 +87,7 @@ To run tests
 
 `make test` if you want to use `Makefile` commands
 
-Set application without Docker.
+# Set application without Docker.
 
 This application uses Ruby version 3.1.2 To install, use rvm or rbenv.
 
