@@ -59,8 +59,8 @@ build: #: Build containers
 build: #: Build containers
 	docker-compose build
 
-d-migrate: #: Run migrations in docker container
-	docker-compose exec web rails db:migrate
+migrate: #: Run migrations in docker container
+	docker-compose run web rails db:migrate
 
 ps: #: Show running processes
 	docker-compose ps
@@ -68,14 +68,14 @@ ps: #: Show running processes
 restart: #: Restart the service container
 	docker-compose restart $(SERVICE)
 
-d-seed: #: Seed the DB in docker container
-	docker-compose exec web rails db:seed
+seed: #: Seed the DB in docker container
+	docker-compose run web rails db:seed
 
 stop: #: Stop running containers
 	docker-compose stop
 
-d-test: #: Run tests in docker container
-	docker-compose exec web rspec
+test: #: Run tests in docker container
+	docker-compose run web rspec
 
 up: #: Start containers
 	docker-compose up -d

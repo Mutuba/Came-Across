@@ -72,6 +72,22 @@ Create a .env file and update each environment variable from the .env.sample fil
 
 For cloudinary, you need to have an account, a free account will do, then go the dashboard and copy `CLOUD_NAME`, `API_KEY`, and `API_SECRET`.
 
+Run `docker-compose exec web rails db:migrate` to run migrations and create all necessary tables for the app.
+
+Run `docker-compose exec web rails db:seed` to add initial data, to the database. Predefined categories and dummy locations will be created.
+
+Go to the terminal where you run `docker-compose up` and stop the container. Then run `docker-compose up -d` to restart the container.
+
+You can access the app on `localhost:3000`.
+
+There is a `Makefile` with shorthand commands for running utility commands for app. Be sure to check that too.
+
+To run tests
+
+`make test` if you want to use `Makefile` commands
+
+Set application without Docker.
+
 run bundle install to install application packages
 
 Run rails db:create to create a database for the application

@@ -6,7 +6,7 @@ require 'rails_helper'
 RSpec.feature 'Locations', type: :feature do
   let!(:location) { create(:location, name: 'Test Location', latitude: 43.5521568, longitude: 7.0288897) }
   let!(:locations) do
-    create_list(:location, 5, name: 'Test Location', latitude: 43.5521568, longitude: 7.0288897)
+    create_list(:location, 11, name: 'Test Location', latitude: 43.5521568, longitude: 7.0288897)
   end
 
   scenario 'User visits the locations index page' do
@@ -59,6 +59,6 @@ RSpec.feature 'Locations', type: :feature do
 
     expect(page).to have_field('location[dates]')
 
-    expect(page).to have_link('Go Home', href: locations_path)
+    expect(page).to have_link('Cancel', href: locations_path)
   end
 end
