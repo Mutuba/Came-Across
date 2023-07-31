@@ -1,7 +1,3 @@
-# https://stackoverflow.com/a/14061796/2237879
-#
-# This hack allows you to run make commands with any set of arguments.
-#
 # For example, these lines are the same:
 #   > make g devise:install
 #   > bundle exec rails generate devise:install
