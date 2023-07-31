@@ -55,16 +55,15 @@
   <% end %>
 
   <div class="d-flex justify-content-between mt-4">
+    <div class="actions">
+      <%= link_to "Cancel", locations_path, class: "btn btn-secondary w-100" %>
+    </div>
     <div class="actions me-4">
       <% if location.new_record? %>
         <%= form.button "Create Location", type: :submit, class: "btn btn-primary" %>
       <% else %>
         <%= form.button "Update Location", type: :submit, class: "btn btn-primary" %>
       <% end %>
-    </div>
-
-    <div class="actions">
-      <%= link_to "Go Home", locations_path, class: "btn btn-primary w-100" %>
     </div>
   </div>
 <% end %>
