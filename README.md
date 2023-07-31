@@ -40,6 +40,16 @@ Move into the directory and install all the requirements.
 
 cd came-across
 
+Setup with Docker
+
+Ensure Docker is installed
+
+Docker needs a database, user and password for the postgres service.
+
+Type `psql` or `sudo -u <your-postres-admin-user> psql` to connect to the a local postgres terminal
+
+Run `CREATE ROLE your_username WITH LOGIN PASSWORD 'your_password';` to create a role for docker instance
+
 run bundle install to install application packages
 
 Run rails db:create to create a database for the application
