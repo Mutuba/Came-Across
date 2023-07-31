@@ -23,7 +23,7 @@
     <% if location.dates? %>
     <p class="lead">
       Visited:
-      <%= content_tag :span, location.dates.utc.strftime('%Y-%m-%d %H:%M'), data: { utc_time: location.dates.utc.iso8601 } %>
+      <%= "#{time_ago_in_words(location.dates)} ago" %>
     </p>
     <% end %>
 

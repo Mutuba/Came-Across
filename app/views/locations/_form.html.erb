@@ -39,9 +39,7 @@
   <br/>
   <p class="lead">Date:</p>
   <div>
-<%= form.datetime_local_field :dates,
-                             class: 'form-control custom-date-field' %>
-
+    <%= form.text_field :dates, class: 'form-control custom-date-field', type: 'date' %>
   </div>
 
   <% if action_name == 'new' %>
