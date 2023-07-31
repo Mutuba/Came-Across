@@ -44,11 +44,33 @@ Setup with Docker
 
 Ensure Docker is installed
 
+Run `docker-compose build` to build the Docker image for the application.
+
+Once the build is complete, run `docker-compose up` to start the Docker container out of the image.
+
+This will the services listed in the docker-compose file, namely web and postres.
+
 Docker needs a database, user and password for the postgres service.
 
-Type `psql` or `sudo -u <your-postres-admin-user> psql` to connect to the a local postgres terminal
+In another terminal window:
 
-Run `CREATE ROLE your_username WITH LOGIN PASSWORD 'your_password';` to create a role for docker instance
+Type `psql` or `sudo -u <your-postres-admin-user> psql` to connect to the a local postgres terminal.
+
+Run `CREATE ROLE your_user_for_the_app WITH LOGIN PASSWORD 'your_password';` to create a role for docker instance.
+
+Since your containers are running, access your postres container by running
+
+`docker-compose exec postgres psql -U  <your_user_for_the_app>`
+
+This will start the postgres terminal within docker container.
+
+Run `CREATE DATABASE your_db_for_the_app;` and then run `GRANT ALL PRIVILEGES ON DATABASE your_db_for_the_app TO your_user_for_the_app;`
+
+This will crate a database for postres service and the app in general.
+
+Create a .env file and update each environment variable from the .env.sample file with your credentials for the postgres database you have created.
+
+For cloudinary, you need to have an account, a free account will do, then go the dashboard and copy `CLOUD_NAME`, `API_KEY`, and `API_SECRET`.
 
 run bundle install to install application packages
 
