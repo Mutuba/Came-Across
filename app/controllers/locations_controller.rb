@@ -115,7 +115,7 @@ class LocationsController < ApplicationController
       :longitude,
       :dates,
       ratings: Location::CATEGORIES,
-      comments_attributes: %i[id content _destroy]
+      comments_attributes: %i[content]
     )
   end
 end
