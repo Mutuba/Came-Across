@@ -3,7 +3,7 @@
   <div class="card">
     <div class="card-body">
       <%= render partial: 'locations/location_details', locals: { location: @location, comments: @comments } %>
-      <div class="d-flex justify-content-between mt-4">
+      <div class="d-flex justify-content-between mt-6">
         <div class="me-auto"> 
           <%= link_to "Delete Location", @location, method: :delete,
                                                 class: "btn btn-danger btn-sm" ,
