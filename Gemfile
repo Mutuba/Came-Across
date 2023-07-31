@@ -79,6 +79,8 @@ end
 
 group :test do
   gem 'database_rewinder'
+  # gem 'capybara'
+  # gem 'selenium-webdriver'
 end
 
 gem 'geocoder', '~> 1.8'
