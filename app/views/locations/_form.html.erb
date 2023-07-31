@@ -16,7 +16,7 @@
   </div>
   <br/>
 
-  <h4>Rating:</h4>
+  <p class="lead">Ratings:</p>
   <div>
     <% Location::CATEGORIES.each do |category| %>
       <div class="form-group">
@@ -32,7 +32,7 @@
   </div>
 
   <br/>
-  <h4>Date:</h4>
+  <p class="lead">Date:</p>
   <div>
 <%= form.datetime_local_field :dates,
                              class: 'form-control custom-date-field' %>
@@ -41,7 +41,7 @@
 
   <% if action_name == 'new' %>
     <br/>
-    <h4>Comments:</h4>
+    <p class="lead">Comments:</p>
     <div>
       <%= form.fields_for :comments do |comment_form| %>
         <div class="field">
