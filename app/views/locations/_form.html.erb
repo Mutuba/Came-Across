@@ -1,18 +1,23 @@
 <%= form_with(model: location) do |form| %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <div class="form-group"> 
-    <%= form.label :name, style: "display: block" %>
+    <%= form.label :name, style: "display: block; margin-top: 1rem;" %>
     <%= form.text_field :name, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :latitude, style: "display: block" %>
+    <%= form.label :latitude, style: "display: block; margin-top: 1rem;" %>
     <%= form.text_field :latitude, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :longitude, style: "display: block" %>
+    <%= form.label :longitude, style: "display: block; margin-top: 1rem;" %>
     <%= form.text_field :longitude, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+   <%= form.label :address, style: "display: block; margin-top: 1rem;" %>
+    <%= form.text_field :address, class: 'form-control' %>
   </div>
   <br/>
 
