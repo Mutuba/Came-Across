@@ -27,9 +27,6 @@ RSpec.feature 'Locations', type: :feature do
     # Check if the "View Location Details" button is present and has the correct link
     expect(page).to have_link('View Location Details', href: location_path(Location.last))
 
-    # Check for pagination links
-    # We don't know the link for "Previous" because we are on the first page
-    # So, let's check if the link is disabled instead
     expect(page).to have_css('.disabled', text: 'Previous')
     expect(page).not_to have_css('.disabled', text: 'Next')
   end
