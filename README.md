@@ -124,4 +124,4 @@ To run tests
 
 - The app is up and running here.
 
-https://comeacross.onrender.com/locations
+https://comeacross.onrender.com/
