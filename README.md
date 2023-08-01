@@ -1,13 +1,13 @@
 ## README.md
 
-# Come Across app lists the places a person has visited and lets the user creates new entries.
+Come Across app lists the places a person has visited and lets the user creates new entries.
 
-- The application offers two main functions:
+The application offers two main functions:
 
-* Ability to view places one has visited
-* Ability to add new entries
+- Ability to view places one has visited
+- Ability to add new entries
 
-This application uses Ruby version 3.1.2 To install, use rvm or rbenv.
+The application uses Ruby version 3.1.2 To install, use rvm or rbenv.
 
 # RVM
 
