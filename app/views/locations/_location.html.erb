@@ -33,7 +33,9 @@
         <p class="lead"><%= category %>: <p><%= render_stars(rating) %></p></p>
       <% end %>
     <% end %>
-
-    <%= link_to "View Location Details", location_path(location), class: "btn btn-primary" %>
+    
+    <div class="text-end">
+      <%= link_to "View Location Details", location_path(location), class: "btn btn-primary" %>
+    </div>
   </div>
 </div>
