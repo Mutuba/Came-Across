@@ -12,7 +12,10 @@ RSpec.describe Cloudinary::CloudinaryUploadService, type: :service do
 
       before do
         # Stub Cloudinary::Uploader.upload to return a mock response for success
-        response = { 'public_id' => 'public_id123', 'secure_url' => 'https://example.com/image.jpg' }
+        response = {
+          'public_id' => 'public_id123',
+          'secure_url' => 'https://example.com/image.jpg'
+        }
         allow(Cloudinary::Uploader).to receive(:upload).and_return(response)
       end
 
@@ -45,7 +48,8 @@ RSpec.describe Cloudinary::CloudinaryUploadService, type: :service do
 
       before do
         # Stub Cloudinary::Uploader.upload to raise a CloudinaryException for failure
-        allow(Cloudinary::Uploader).to receive(:upload).and_raise(CloudinaryException, 'Upload failed')
+        allow(Cloudinary::Uploader).to receive(:upload)
+          .and_raise(CloudinaryException, 'Upload failed')
       end
 
       it 'returns a failure response with error message' do

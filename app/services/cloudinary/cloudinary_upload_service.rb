@@ -5,7 +5,7 @@
 module Cloudinary
   class CloudinaryUploadService < ApplicationService
     def initialize(**params)
-      super() # Prodent to ensure parent initialize method is called before child's
+      super() # Prudent to ensure parent initialize method is called before child's
       @file = params.fetch(:file)
       @folder = params.fetch(:folder, 'default_folder')
     end
