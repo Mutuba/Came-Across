@@ -1,6 +1,6 @@
 ## README.md
 
-- Come Across that list the places a person has visited and lets the user creates new entries.
+# Come Across app lists the places a person has visited and lets the user creates new entries.
 
 - The application offers two main functions:
 
