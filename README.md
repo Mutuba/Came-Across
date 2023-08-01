@@ -118,6 +118,10 @@ To run tests
 
 - Run `rails db:seed` to initialize the database with seed data
 
-The application can be run by running the below command:-
+* The application can be run by running the below command:-
 
 `rails s or rails server`
+
+- The app is up and running here.
+
+https://comeacross.onrender.com/locations
