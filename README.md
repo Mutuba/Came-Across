@@ -122,6 +122,6 @@ To run tests
 
 `rails s or rails server`
 
-- The app is up and running here.
+# The app is up and running here.
 
-https://comeacross.onrender.com/
+- https://comeacross.onrender.com/
