@@ -1,13 +1,14 @@
 # Dockerfile development version
-FROM ruby:3.0.2
+FROM ruby:3.2.2
 
 RUN apt-get update -qq && apt-get install -y curl postgresql-client cmake
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 RUN apt-get update && apt-get install -y ffmpeg
 
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get install -y nodejs
+
 RUN apt-get install -y vim nano
-RUN npm i -g yarn@1.19.1
 
 RUN mkdir /app
 WORKDIR /app
@@ -17,6 +18,16 @@ COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install
 
+RUN bundle binstubs --all
+
+RUN touch $HOME/.bashrc
+
+RUN echo "alias ll='ls -alF'" >> $HOME/.bashrc
+RUN echo "alias la='ls -A'" >> $HOME/.bashrc
+RUN echo "alias l='ls -CF'" >> $HOME/.bashrc
+RUN echo "alias q='exit'" >> $HOME/.bashrc
+RUN echo "alias c='clear'" >> $HOME/.bashrc
+
 COPY . /app
 
 COPY entrypoint.sh /usr/bin/
@@ -25,4 +36,4 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 # Start server
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0", "/bin/bash"]
