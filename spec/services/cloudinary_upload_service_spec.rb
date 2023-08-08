@@ -20,10 +20,10 @@ RSpec.describe Cloudinary::CloudinaryUploadService, type: :service do
       end
 
       it 'uploads the file to Cloudinary with the given folder' do
-        service = Cloudinary::CloudinaryUploadService.new(file: file, folder: folder)
+        service = Cloudinary::CloudinaryUploadService.new(file:, folder:)
         result = service.call
 
-        expect(Cloudinary::Uploader).to have_received(:upload).with(file, folder: folder)
+        expect(Cloudinary::Uploader).to have_received(:upload).with(file, folder:)
         expect(result.success).to be true
         expect(result.public_id).to eq 'public_id123'
         expect(result.secure_url).to eq 'https://example.com/image.jpg'
@@ -31,7 +31,7 @@ RSpec.describe Cloudinary::CloudinaryUploadService, type: :service do
       end
 
       it 'uploads the file to Cloudinary with the default folder when folder is not provided' do
-        service = Cloudinary::CloudinaryUploadService.new(file: file)
+        service = Cloudinary::CloudinaryUploadService.new(file:)
         result = service.call
 
         expect(Cloudinary::Uploader).to have_received(:upload).with(file, folder: 'default_folder')
@@ -53,10 +53,10 @@ RSpec.describe Cloudinary::CloudinaryUploadService, type: :service do
       end
 
       it 'returns a failure response with error message' do
-        service = Cloudinary::CloudinaryUploadService.new(file: file, folder: folder)
+        service = Cloudinary::CloudinaryUploadService.new(file:, folder:)
         result = service.call
 
-        expect(Cloudinary::Uploader).to have_received(:upload).with(file, folder: folder)
+        expect(Cloudinary::Uploader).to have_received(:upload).with(file, folder:)
         expect(result.success).to be false
         expect(result.public_id).to be_nil
         expect(result.secure_url).to be_nil

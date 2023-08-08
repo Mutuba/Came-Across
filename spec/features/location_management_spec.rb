@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'Location Management' do
   let!(:location) { create(:location) }
-  let!(:comment) { create(:comment, location: location) }
+  let!(:comment) { create(:comment, location:) }
 
   scenario 'update a location' do
     visit edit_location_path(location)

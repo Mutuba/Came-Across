@@ -55,7 +55,7 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:comment) { create(:comment, location: location) }
+    let(:comment) { create(:comment, location:) }
     it 'returns a success JSON response' do
       get :show, params: { location_id: location.id, id: comment.id }, format: :json
       expect(response).to be_successful
@@ -64,7 +64,7 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   describe 'GET #edit' do
-    let(:comment) { create(:comment, location: location) }
+    let(:comment) { create(:comment, location:) }
 
     it 'returns a success response' do
       get :edit, params: { location_id: location.id, id: comment.id }
@@ -78,7 +78,7 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   describe 'PATCH #update' do
-    let(:comment) { create(:comment, location: location) }
+    let(:comment) { create(:comment, location:) }
 
     context 'with valid params' do
       let(:valid_attributes) { attributes_for(:comment) }
@@ -140,7 +140,7 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let!(:comment) { create(:comment, location: location) }
+    let!(:comment) { create(:comment, location:) }
 
     it 'destroys the requested comment' do
       expect do
@@ -166,7 +166,7 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   describe 'POST #cancel_edit' do
-    let!(:comment) { create(:comment, location: location) }
+    let!(:comment) { create(:comment, location:) }
     context 'when format is HTML' do
       it 'redirects to the location and sets the notice message' do
         get :cancel_edit, params: { location_id: location.id, id: comment.id }, format: :html

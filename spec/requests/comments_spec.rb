@@ -56,7 +56,7 @@ RSpec.describe 'Comments', type: :request do
   end
 
   describe 'GET #show' do
-    let(:comment) { create(:comment, location: location) }
+    let(:comment) { create(:comment, location:) }
 
     it 'returns a success JSON response' do
       get location_comment_path(location, comment), as: :json
@@ -66,7 +66,7 @@ RSpec.describe 'Comments', type: :request do
   end
 
   describe 'GET #edit' do
-    let(:comment) { create(:comment, location: location) }
+    let(:comment) { create(:comment, location:) }
 
     it 'returns a success response' do
       get edit_location_comment_path(location, comment)
@@ -80,7 +80,7 @@ RSpec.describe 'Comments', type: :request do
   end
 
   describe 'PATCH #update' do
-    let(:comment) { create(:comment, location: location) }
+    let(:comment) { create(:comment, location:) }
 
     context 'with valid params' do
       let(:valid_attributes) { attributes_for(:comment) }
@@ -133,7 +133,7 @@ RSpec.describe 'Comments', type: :request do
   end
 
   describe 'DELETE #destroy' do
-    let!(:comment) { create(:comment, location: location) }
+    let!(:comment) { create(:comment, location:) }
 
     it 'destroys the requested comment' do
       expect do
@@ -159,7 +159,7 @@ RSpec.describe 'Comments', type: :request do
   end
 
   describe 'POST #cancel_edit' do
-    let!(:comment) { create(:comment, location: location) }
+    let!(:comment) { create(:comment, location:) }
 
     context 'when format is HTML' do
       it 'redirects to the location and sets the notice message' do

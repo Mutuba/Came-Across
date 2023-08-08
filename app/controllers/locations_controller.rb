@@ -16,7 +16,9 @@ class LocationsController < ApplicationController
 
   # GET /locations/1 or /locations/1.json
   def show
-    @comments = @location.comments.page(params[:page]).order(created_at: :desc)
+    @comments = @location.comments
+                         .page(params[:page])
+                         .order(created_at: :desc)
     respond_to do |format|
       format.html
       format.json { render json: @location }

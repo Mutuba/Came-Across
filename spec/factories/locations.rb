@@ -9,7 +9,7 @@ FactoryBot.define do
 
     trait :location_with_comments do
       after :create do |location|
-        create_list :comment, 5, location: location
+        create_list :comment, 5, location:
       end
     end
   end

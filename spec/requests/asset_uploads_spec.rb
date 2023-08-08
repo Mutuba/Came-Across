@@ -18,13 +18,13 @@ RSpec.describe 'ImageUploads', type: :request do
           .and_return(file)
         expect(Cloudinary::CloudinaryUploadService)
           .to receive(:call)
-          .with(file: file, folder: 'come_across_uploads')
+          .with(file:, folder: 'come_across_uploads')
           .and_return(
             OpenStruct.new(
               success: true, secure_url: 'https://example.com/image.jpeg'
             )
           )
-        post asset_uploads_path, params: { file: file }
+        post asset_uploads_path, params: { file: }
       end
 
       it 'returns a successful response' do
@@ -59,13 +59,13 @@ RSpec.describe 'ImageUploads', type: :request do
           .and_return(file)
         expect(Cloudinary::CloudinaryUploadService)
           .to receive(:call)
-          .with(file: file, folder: 'come_across_uploads')
+          .with(file:, folder: 'come_across_uploads')
           .and_return(
             OpenStruct.new(
               success: false, error_message: 'malformed file'
             )
           )
-        post asset_uploads_path, params: { file: file }
+        post asset_uploads_path, params: { file: }
       end
 
       it 'returns an unprocessable entity status' do
